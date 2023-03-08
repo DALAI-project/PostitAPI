@@ -76,7 +76,7 @@ In the Dockerfile, port 8000 is exposed, meaning that the container listens to t
 In the above command, the corresponding host port can be chosen as the first element in `-p <host-port>:<container-port>`. 
 If only the container port is specified, Docker will automatically select a free port as the host port. The port mapping of the container can be viewed with the command
 
-`sudo docker port corner_container`
+`sudo docker port postit_container`
 
 ## Testing the API
 
