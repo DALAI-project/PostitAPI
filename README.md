@@ -26,7 +26,7 @@ If you use a model with different name, you need to update the model name in the
 ### Running the API in a virtual environment
 
 These instructions use a conda virtual environment, and as a precondition you should have Miniconda or Anaconda installed on your operating system. 
-More information on the installation as available [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html). 
+More information on the installation is available [here](https://docs.conda.io/projects/conda/en/latest/user-guide/install/index.html). 
 
 First create and activate conda environment using the following commands:
 
