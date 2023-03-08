@@ -17,7 +17,7 @@ Finnish National Archives.
 
 ## Running the API
 
-The API code has been built using the [FastAPI lirary](https://fastapi.tiangolo.com/). It can be run either in a virtual environment,
+The API code has been built using the [FastAPI](https://fastapi.tiangolo.com/) library. It can be run either in a virtual environment,
 or in a Docker container. Instructions for both options are given below. 
 
 The API uses the pretrained machine learning model file located in the `/model` folder. By default the file name should be `post_it_model.onnx`.
@@ -99,7 +99,7 @@ The image path `/path/img.jpg` should be replaced with a path to the image that 
 ### Testing the API using Docker
 
 In the Docker version of the API, the use of the latter option for passing input to the API requires 
-you to use bind mount (https://docs.docker.com/storage/bind-mounts/) to mount the desired file or 
+you to use [bind mount](https://docs.docker.com/storage/bind-mounts/) to mount the desired file or 
 directory into the Docker container. For instance if your input images are located in a local folder 
 `/home/user/data` and you want to pass their filepaths to the containerized API, you can create and start the 
 container with the command 
