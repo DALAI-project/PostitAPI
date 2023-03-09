@@ -1,5 +1,7 @@
 # PostitAPI
 
+![post_it_en](https://user-images.githubusercontent.com/33789802/224070802-e7f5965a-5486-4bba-b481-58ef0cccb0f9.jpg)
+
 API for a machine learning model trained to detect post-it/sticky notes from scanned document images. 
 The user sends the API an input image (in .jpg, .png or .tiff format) of a scanned document, and the API returns a reply 
 containing the predicted classification ('ok' or 'post-it'), and the corresponding prediction confidence (a number
