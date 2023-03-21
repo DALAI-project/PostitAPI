@@ -69,7 +69,7 @@ Build Docker image using the Dockerfile included in the repository:
 
 `docker build -t postit_image .`
 
-Here the new image is named corner_image. After successfully creating the image, you can find it in the list of images by typing `docker image ls`.
+Here the new image is named postit_image. After successfully creating the image, you can find it in the list of images by typing `docker image ls`.
 
 Create and run a container based on the image:
 
