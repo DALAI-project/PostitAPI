@@ -14,9 +14,15 @@ The neural network model used for the image classification task was built with t
 was done by fine-tuning an existing [Densenet neural network model](https://pytorch.org/vision/main/models/generated/torchvision.models.densenet121.html).
 The trained model file was transformed into the [ONNX](https://onnx.ai/) format in order to speed up inference and to make the use of the model less dependent on specific frameworks and libraries. 
 
-The model has been trained using approximately 36 000 scanned document images, out of which 3000 images contain post-it notes. With a test set of 10 000 images (800 containing post-it notes), the model 
-reaches a 99% detection accuracy for faulty images and a 100% detection accuracy for images not containing post-it notes. Both the training and test data consist mainly of document images from the 1970s onwards, digitized by the 
-Finnish National Archives.
+Class|Training samples|Validation samples|Test samples|Test accuracy
+-|-|-|-|-
+Post-it|2703|722|775|99.08%
+No post-it|37624|4180|9638|99.77%
+
+The model has been trained and tested using approximately 55 600 scanned document images, out of which 4200 images contain post-it notes. With a test set of over 10 000 images, the model reaches over 99% detection accuracy for both classes of images. 
+
+The data used in model training and testing consists of documents produced by the Finnish public administration in the period from 1970s till 2020s and digitized by the 
+Finnish National Archives. The documents contain sensitive data, and therefore the dataset can not be made publicly available.
 
 ## Running the API
 
