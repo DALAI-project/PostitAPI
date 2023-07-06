@@ -10,16 +10,16 @@ between 0 and 1).
 
 ## Model training and testing 
 
-The neural network model used for the image classification task was built with the Pytorch library, and the model training
+The neural network model used for the image classification task was built using the PyTorch library, and the model training
 was done by fine-tuning an existing [Densenet neural network model](https://pytorch.org/vision/main/models/generated/torchvision.models.densenet121.html).
 The trained model file was transformed into the [ONNX](https://onnx.ai/) format in order to speed up inference and to make the use of the model less dependent on specific frameworks and libraries. 
 
 Class|Training samples|Validation samples|Test samples|Test accuracy
 -|-|-|-|-
-Post-it|2703|722|775|99.08%
-No post-it|37624|4180|9638|99.77%
+Post-it|3400|425|425|99.08%
+No post-it|41377|5133|4829|99.77%
 
-The model has been trained and tested using approximately 55 600 scanned document images, out of which 4200 images contain post-it notes. With a test set of over 10 000 images, the model reaches over 99% detection accuracy for both classes of images. 
+The model has been trained and tested using 55 545 scanned document images, out of which 4250 images contain post-it notes. With a test set of over 5 000 images, the model reaches over 99% detection accuracy for both classes. 
 
 The data used in model training and testing consists of documents produced by the Finnish public administration in the period from 1970s till 2020s and digitized by the 
 Finnish National Archives. The documents contain sensitive data, and therefore the dataset can not be made publicly available.
@@ -87,7 +87,7 @@ The port mapping of the container can be viewed with the command `sudo docker po
 ## Testing the API
 
 The API has two endpoints: `/postit` endpoint expects the input image to be included in the client's POST request, while  
-`/postiturl` endpoint expects to receive the  filepath to the image as a query parameter.
+`/postiturl` endpoint expects to receive the filepath to the image as a query parameter.
 
 ### Testing the API in a virtual environment
 
