@@ -16,10 +16,10 @@ The trained model file was transformed into the [ONNX](https://onnx.ai/) format 
 
 Class|Training samples|Validation samples|Test samples|Test accuracy
 -|-|-|-|-
-Post-it|3400|425|425|99.08%
-No post-it|41377|5133|4829|99.77%
+Post-it|3400|425|425|98.80%
+No post-it|41 377|5133|4829|99.75%
 
-The model has been trained and tested using 55 545 scanned document images, out of which 4250 images contain post-it notes. With a test set of over 5 000 images, the model reaches over 99% detection accuracy for both classes. 
+The model has been trained and tested using 55 545 scanned document images, out of which 4250 images contain post-it notes. With a test set of over 5 000 images, the model reaches over 98% detection accuracy for both classes. 
 
 The data used in model training and testing consists of documents produced by the Finnish public administration in the period from 1970s till 2020s and digitized by the 
 Finnish National Archives. The documents contain sensitive data, and therefore the dataset can not be made publicly available.
