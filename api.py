@@ -5,12 +5,13 @@ import numpy as np
 import io
 from PIL import Image
 import uvicorn
-import syslog
+import logging
 import sys
 import time
 
-# https://docs.python.org/3/library/syslog.html
-syslog.openlog(ident="Post-it-API", logoption=syslog.LOG_PID, facility=syslog.LOG_LOCAL0)
+# For logging options see
+# https://docs.python.org/3/library/logging.html
+logging.basicConfig(filename='api_log.log', filemode='w', format='%(asctime)s %(message)s', datefmt='%d/%m/%Y %H:%M:%S', level=logging.INFO)
 
 # Path to pretrained model
 MODEL_PATH = './model/post_it_model.onnx'
@@ -30,7 +31,7 @@ try:
     # Initialize API Server
     app = FastAPI()
 except Exception as e:
-    syslog.syslog(syslog.LOG_ERR, 'Failed to start the API server: {}'.format(e))
+    logging.error('Failed to start the API server: %s' % e)
     sys.exit(1)
 
 
@@ -46,8 +47,8 @@ async def load_model():
         # Add model to app state
         app.package = {"model": model}
     except Exception as e:
-        syslog.syslog(syslog.LOG_ERR, 'Failed to load the model file: {}'.format(e))
-        raise HTTPException(status_code=500, detail=f"Failed to load the model file: {e}")
+        logging.error('Failed to load the model file: %s' % e)
+        raise HTTPException(status_code=500, detail='Failed to load the model file: %s' % e)
 
 
 def predict(image):
@@ -84,15 +85,15 @@ async def postit(file: UploadFile = File(...)):
         image = Image.open(io.BytesIO(req_content))
         image.draft('RGB', (IMG_SIZE, IMG_SIZE))
     except Exception as e:
-        syslog.syslog(syslog.LOG_ERR, 'Failed to load the input image file: {}'.format(e)) 
-        raise HTTPException(status_code=400, detail=f"Failed to load the input image file: {e}")
+        logging.error('Failed to load the input image file: %s' % e) 
+        raise HTTPException(status_code=400, detail='Failed to load the input image file: %s' % e)
 
     # Get predicted class and confidence
     try: 
         predictions = predict(image)
     except Exception as e:
-        syslog.syslog(syslog.LOG_ERR, 'Failed to analyze the input image file: {}'.format(e))
-        raise HTTPException(status_code=500, detail=f"Failed to analyze the input image file: {e}")
+        logging.error('Failed to analyze the input image file: %s' % e)
+        raise HTTPException(status_code=500, detail='Failed to analyze the input image file: %s' % e)
         
     return predictions
 
@@ -106,17 +107,17 @@ async def postit_url(url: str):
         image.draft('RGB', (IMG_SIZE, IMG_SIZE))
 
     except Exception as e:
-        syslog.syslog(syslog.LOG_ERR, 'Failed to recognize file {} as an image. Error: {}'.format(url, e))
-        raise HTTPException(status_code=400, detail=f"Failed to load the input image file: {e}")
+        logging.error('Failed to recognize file %s as an image. Error: %s' % (url, e))
+        raise HTTPException(status_code=400, detail='Failed to load the input image file: %s' % e)
 
     # Get predicted class and confidence
     try: 
         predictions = predict(image)
     except Exception as e:
-        syslog.syslog(syslog.LOG_ERR, 'Failed to analyze the input image file: {}'.format(e))
-        raise HTTPException(status_code=500, detail=f"Failed to analyze the input image file: {e}")
+        logging.error('Failed to analyze the input image file: %s' % e)
+        raise HTTPException(status_code=500, detail='Failed to analyze the input image file: %s' % e)
 
     return predictions
 
 if __name__ == '__main__':
-    uvicorn.run(app, host='0.0.0.0', port=8000, log_level="info")
+    uvicorn.run(app, host='0.0.0.0', port=8000)
