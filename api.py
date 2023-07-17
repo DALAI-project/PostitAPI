@@ -7,7 +7,6 @@ from PIL import Image
 import uvicorn
 import logging
 import sys
-import time
 
 # For logging options see
 # https://docs.python.org/3/library/logging.html
