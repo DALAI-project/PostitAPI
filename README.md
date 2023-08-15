@@ -100,6 +100,8 @@ You can test the `/postit` endpoint of the API for example using curl:
 
 `curl http://127.0.0.1:8000/postit -F file=@/path/img.jpg`
 
+NB! Windows users might encounter following error `Invoke-WebRequest : A parameter cannot be found that matches parameter name 'F'.`. This can be bypassed by running a command `Remove-item alias:curl`.
+
 The second option is to send the url/path to the image file with the http request:
 
 `curl http://127.0.0.1:8000/postiturl?url=/path/img.jpg`
