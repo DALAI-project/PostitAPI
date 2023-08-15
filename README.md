@@ -73,7 +73,7 @@ As a precondition, you should have Docker Engine installed. More information on 
 
 #### Build Docker image using the *Dockerfile* included in the repository: 
 
-`docker build -t postit_image .`
+`sudo docker build -t postit_image .`
 
 Here the new image is named postit_image. After successfully creating the image, you can find it in the list of images by typing `docker image ls`.
 
