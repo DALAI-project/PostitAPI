@@ -81,7 +81,7 @@ async def postit(file: UploadFile = File(...)):
     try:
         # Loads the image sent with the POST request
         req_content = await file.read()
-        image = Image.open(io.BytesIO(req_content))
+        image = Image.open(io.BytesIO(req_content)).convert('RGB')
         image.draft('RGB', (IMG_SIZE, IMG_SIZE))
     except Exception as e:
         logging.error('Failed to load the input image file: %s' % e) 
@@ -102,7 +102,7 @@ async def postit_url(path: str):
     try:
         # Loads the image from the path sent with the GET request
         #req_content = requests.get(path)
-        image = Image.open(path)
+        image = Image.open(path).convert('RGB')
         image.draft('RGB', (IMG_SIZE, IMG_SIZE))
 
     except Exception as e:
