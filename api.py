@@ -97,16 +97,16 @@ async def postit(file: UploadFile = File(...)):
     return predictions
 
 # Endpoint for GET requests: input image path is received with the http request
-@app.get("/postiturl")
-async def postit_url(url: str):
+@app.get("/postitpath")
+async def postit_url(path: str):
     try:
         # Loads the image from the path sent with the GET request
-        #req_content = requests.get(url)
-        image = Image.open(url)
+        #req_content = requests.get(path)
+        image = Image.open(path)
         image.draft('RGB', (IMG_SIZE, IMG_SIZE))
 
     except Exception as e:
-        logging.error('Failed to recognize file %s as an image. Error: %s' % (url, e))
+        logging.error('Failed to recognize file %s as an image. Error: %s' % (path, e))
         raise HTTPException(status_code=400, detail='Failed to load the input image file: %s' % e)
 
     # Get predicted class and confidence
